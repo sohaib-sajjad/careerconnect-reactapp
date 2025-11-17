@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {styles} from './styles';
 import { useState } from 'react';
+import OrganizationPage from './organization/pages/organizationPage.jsx';
+import UserPage from './organization/pages/organizationPage.jsx';
 
 function App() {
 
@@ -32,6 +34,13 @@ function App() {
             Job Seeker
           </button>
         </div>
+        <main style={styles.main}>
+        {mode === "org" ? (
+          <OrganizationPage/>
+        ) : (
+          <UserPage/>
+        )}
+      </main>
       </header>
     </div>
   );

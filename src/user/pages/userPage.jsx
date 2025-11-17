@@ -1,0 +1,37 @@
+import React from "react";
+import { styles } from "../../styles";
+import UserJobList from "../components/UserJobList";
+
+function UserPage({ jobs, appliedJobIds, onApply }) {
+  return (
+    <div style={styles.userLayout}>
+      <section style={styles.listSection}>
+        <h2>Browse Jobs</h2>
+        <UserJobList
+          jobs={jobs}
+          appliedJobIds={appliedJobIds}
+          onApply={onApply}
+        />
+      </section>
+
+      <section style={styles.appliedSection}>
+        <h2>My Applications</h2>
+        {appliedJobIds.length === 0 ? (
+          <p>You have not applied to any jobs yet.</p>
+        ) : (
+          <ul>
+            {jobs
+              .filter((job) => appliedJobIds.includes(job.id))
+              .map((job) => (
+                <li key={job.id}>
+                  {job.title} – {job.company}
+                </li>
+              ))}
+          </ul>
+        )}
+      </section>
+    </div>
+  );
+}
+
+export default UserPage;
