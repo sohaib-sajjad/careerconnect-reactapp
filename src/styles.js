@@ -7,6 +7,14 @@ app: {
     padding: "20px",
     boxSizing: "border-box",
   },
+   main: {
+    maxWidth: 1000,
+    margin: "0 auto",
+    background: "#fff",
+    borderRadius: 8,
+    padding: 20,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+  },
   header: {
     maxWidth: 1000,
     margin: "0 auto 20px",
