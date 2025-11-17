@@ -1,16 +1,35 @@
 import React from "react";
 import { styles } from "../../styles";
 import JobForm from "../components/jobForm";
-import OrgJobList from "../components/OrgJobList";
+import OrgJobList from "../components/orgJobList";
+import orgPageControllers from "./OrganizationPageController";
 
-function OrganizationPage({
-  jobs,
-  editingJob,
-  onCreateJob,
-  onUpdateJob,
-  onDeleteJob,
-  onEditJob,
-}) {
+
+function OrganizationPage() {
+
+
+ // ---- STATE ----
+  const [jobs, setJobs] = React.useState([]);
+  const [editingJob, setEditingJob] = React.useState(null);
+
+  // ---- CONTROLLERS ----
+  const onCreateJob = (jobData) => {
+    orgPageControllers.handleCreateJob(jobData, { setJobs });
+  };
+
+  const onUpdateJob = (jobData) => {
+    orgPageControllers.handleUpdateJob(jobData, { setJobs, setEditingJob });
+  };
+
+  const onDeleteJob = (id) => {
+    orgPageControllers.handleDeleteJob(id, { setJobs });
+  };
+
+  const onEditJob = (job) => {
+    setEditingJob(job); // triggers edit mode
+  };
+
+
   return (
     <div style={styles.orgLayout}>
       <section style={styles.formSection}>
@@ -19,7 +38,7 @@ function OrganizationPage({
           key={editingJob ? editingJob.id : "create-form"}
           initialJob={editingJob}
           onSubmit={editingJob ? onUpdateJob : onCreateJob}
-          onCancel={() => onEditJob(null)}
+          onCancel={() => orgPageControllers.onEditJob(null)}
         />
       </section>
 

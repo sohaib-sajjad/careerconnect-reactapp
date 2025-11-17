@@ -1,13 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
-import {styles} from './styles';
-import { useState } from 'react';
+import { styles } from './styles';
+import { useState, useRef} from 'react';
 import OrganizationPage from './organization/pages/organizationPage.jsx';
 import UserPage from './organization/pages/organizationPage.jsx';
 
 function App() {
 
   const [mode, setMode] = useState("org"); // "org" | "user"
+  const [jobs, setJobs] = useState([
+    {
+      id: 1,
+      title: "Frontend Developer",
+      company: "Acme Inc.",
+      location: "Remote",
+      description: "Build UI components with React and modern JS.",
+    },
+    {
+      id: 2,
+      title: "Backend Engineer",
+      company: "Tech Corp",
+      location: "New York",
+      description: "Work with Node.js, APIs, and databases.",
+    },
+  ]);
+
+  const nextIdRef = useRef(3);
+  const [editingJob, setEditingJob] = useState(null);
+  const [appliedJobIds, setAppliedJobIds] = useState([]);
+  
 
   return (
     <div style={styles.app}>
@@ -35,12 +56,17 @@ function App() {
           </button>
         </div>
         <main style={styles.main}>
-        {mode === "org" ? (
-          <OrganizationPage/>
-        ) : (
-          <UserPage/>
-        )}
-      </main>
+          {mode === "org" ? (
+            <OrganizationPage
+              jobs={jobs}
+            />
+          ) : (
+            <UserPage
+              jobs={jobs}
+              appliedJobIds={appliedJobIds}
+            />
+          )}
+        </main>
       </header>
     </div>
   );
