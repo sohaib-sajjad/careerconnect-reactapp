@@ -6,7 +6,7 @@ app: {
     minHeight: "100vh",
     padding: "20px",
     boxSizing: "border-box",
-  }
+  },
   header: {
     maxWidth: 1000,
     margin: "0 auto 20px",
