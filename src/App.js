@@ -3,7 +3,7 @@ import './App.css';
 import { styles } from './styles';
 import { useState, useRef} from 'react';
 import OrganizationPage from './organization/pages/organizationPage.jsx';
-import UserPage from './organization/pages/organizationPage.jsx';
+import UserPage from './user/pages/userPage.jsx';
 
 function App() {
 
@@ -58,12 +58,9 @@ function App() {
         <main style={styles.main}>
           {mode === "org" ? (
             <OrganizationPage
-              jobs={jobs}
             />
           ) : (
             <UserPage
-              jobs={jobs}
-              appliedJobIds={appliedJobIds}
             />
           )}
         </main>
