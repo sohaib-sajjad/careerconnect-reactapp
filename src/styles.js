@@ -7,5 +7,13 @@ app: {
     padding: "20px",
     boxSizing: "border-box",
   }
+  header: {
+    maxWidth: 1000,
+    margin: "0 auto 20px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+  },
   
 }
