@@ -15,5 +15,17 @@ app: {
     justifyContent: "space-between",
     gap: 16,
   },
-  
+  modeButton: {
+    padding: "8px 16px",
+    borderRadius: 999,
+    border: "1px solid #d0d0e0",
+    background: "#fff",
+    cursor: "pointer",
+    fontSize: 14,
+  },
+  modeButtonActive: {
+    background: "#2563eb",
+    color: "#fff",
+    borderColor: "#2563eb",
+  },
 }
