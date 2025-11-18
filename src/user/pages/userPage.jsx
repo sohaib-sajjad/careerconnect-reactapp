@@ -7,7 +7,22 @@ import { useState} from 'react';
 function UserPage() {
 
     // ---- STATE ----
-    const [jobs, setJobs] = React.useState([]);
+    const [jobs, setJobs] = React.useState([
+    {
+      id: 1,
+      title: "Frontend Developer",
+      company: "Acme Inc.",
+      location: "Remote",
+      description: "Build UI components with React and modern JS.",
+    },
+    {
+      id: 2,
+      title: "Backend Engineer",
+      company: "Tech Corp",
+      location: "New York",
+      description: "Work with Node.js, APIs, and databases.",
+    },
+  ]);
     const [editingJob, setEditingJob] = React.useState(null);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
 
