@@ -1,30 +1,41 @@
 import React from "react";
-import { styles } from "../../styles";
 
-function OrgJobList({ jobs, onEdit, onDelete }) {
+export default function OrgJobList({ jobs = [], onEdit, onDelete, onView }) {
   if (jobs.length === 0) {
     return <p>No jobs created yet.</p>;
   }
 
   return (
-    <div style={styles.cardList}>
+    <div>
       {jobs.map((job) => (
-        <div key={job.id} style={styles.jobCard}>
-          <h3 style={styles.jobTitle}>{job.title}</h3>
-          <p style={styles.jobMeta}>
-            <strong>{job.company}</strong> · {job.location || "Location N/A"}
+        <div
+          key={job.id}
+          style={{
+            border: "1px solid #ddd",
+            padding: 12,
+            marginBottom: 8,
+            cursor: "pointer",
+          }}
+          onClick={() => onView && onView(job.id)} // navigate on click
+        >
+          <h3>{job.title}</h3>
+          <p>
+            {job.company} — {job.location}
           </p>
-          <p style={styles.jobDescription}>
-            {job.description || "No description provided."}
-          </p>
-
-          <div style={styles.cardActions}>
-            <button style={styles.smallButton} onClick={() => onEdit(job)}>
+          <div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit && onEdit(job);
+              }}
+            >
               Edit
             </button>
             <button
-              style={{ ...styles.smallButton, ...styles.dangerButton }}
-              onClick={() => onDelete(job.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete && onDelete(job.id);
+              }}
             >
               Delete
             </button>
@@ -34,5 +45,3 @@ function OrgJobList({ jobs, onEdit, onDelete }) {
     </div>
   );
 }
-
-export default OrgJobList;
