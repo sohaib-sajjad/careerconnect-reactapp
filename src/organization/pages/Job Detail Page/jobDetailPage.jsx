@@ -20,22 +20,6 @@ const JobDetailPage = () => {
         fetchJobDetails();
     }, [jobId]);
 
-    const handleEdit = () => {
-        navigate(`/edit-job/${jobId}`); // Use navigate instead of history.push
-    };
-
-    const handleDelete = async () => {
-        const response = await fetch(`/api/jobs/${jobId}`, {
-            method: 'DELETE',
-        });
-
-        if (response.ok) {
-            navigate('/all-jobs'); // Redirect to the job list page
-        } else {
-            alert('Failed to delete the job');
-        }
-    };
-
 
     return (
         <div className="job-detail-container">
@@ -45,11 +29,6 @@ const JobDetailPage = () => {
                 <p><strong>Company:</strong> {"jobDetails.company"}</p>
                 <p><strong>Location:</strong> {"jobDetails.location"}</p>
                 <p><strong>Description:</strong> {"jobDetails.description"}</p>
-
-                <div className="job-actions">
-                    <button onClick={handleEdit}>Edit</button>
-                    <button onClick={handleDelete} className="delete-btn">Delete</button>
-                </div>
             </div>
         </div>
     );
