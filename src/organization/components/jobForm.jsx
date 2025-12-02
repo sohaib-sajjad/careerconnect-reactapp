@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { styles } from "../../styles";
-import { createJob } from "../../services/jobService";
 
-function JobForm({ initialJob, organizationId, onSubmit, onCancel }) {
+function JobForm({ initialJob, onSubmit, onCancel }) {
   const [title, setTitle] = useState(initialJob?.title || "");
   const [company, setCompany] = useState(initialJob?.company || "");
   const [location, setLocation] = useState(initialJob?.location || "");
@@ -19,7 +18,6 @@ function JobForm({ initialJob, organizationId, onSubmit, onCancel }) {
       return;
     }
 
-    // company/location are frontend only for now
     const jobData = {
       id: initialJob?.id,
       title: title.trim(),
@@ -31,33 +29,11 @@ function JobForm({ initialJob, organizationId, onSubmit, onCancel }) {
     try {
       setLoading(true);
 
-      if (initialJob) {
-        // EDIT MODE: let parent handle update (PATCH/PUT)
-        onSubmit && onSubmit(jobData);
-      } else {
-        // CREATE MODE: call backend
-        if (!organizationId) {
-          alert("organizationId is required to create a job.");
-          return;
-        }
+      // Send data to parent: controller makes API call
+      onSubmit && onSubmit(jobData);
 
-        const createdJob = await createJob({
-          title: jobData.title,
-          description: jobData.description,
-          organizationId,
-        });
-
-        // optionally merge frontend-only fields into created job
-        const fullJob = {
-          ...createdJob,
-          company: jobData.company,
-          location: jobData.location,
-        };
-
-        // Inform parent that a new job was created
-        onSubmit && onSubmit(fullJob);
-
-        // Reset form after successful create
+      // reset form only for create mode
+      if (!initialJob) {
         setTitle("");
         setCompany("");
         setLocation("");
@@ -121,6 +97,7 @@ function JobForm({ initialJob, organizationId, onSubmit, onCancel }) {
             ? "Save Changes"
             : "Create Job"}
         </button>
+
         {initialJob && (
           <button
             type="button"
