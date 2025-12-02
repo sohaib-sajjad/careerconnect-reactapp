@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styles } from "../../styles";
+import { createJob } from "../../services/jobService";
 
 function JobForm({ initialJob, onSubmit, onCancel }) {
   const [title, setTitle] = useState(initialJob?.title || "");
@@ -8,15 +9,17 @@ function JobForm({ initialJob, onSubmit, onCancel }) {
   const [description, setDescription] = useState(
     initialJob?.description || ""
   );
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !company.trim()) {
-      alert("Title and Company are required.");
+    if (!title.trim()) {
+      alert("Title is required.");
       return;
     }
 
+    // company/location are frontend only for now
     const jobData = {
       id: initialJob?.id,
       title: title.trim(),
@@ -25,15 +28,50 @@ function JobForm({ initialJob, onSubmit, onCancel }) {
       description: description.trim(),
     };
 
-    onSubmit(jobData);
+    try {
+      setLoading(true);
 
-    if (!initialJob) {
-      setTitle("");
-      setCompany("");
-      setLocation("");
-      setDescription("");
+      if (initialJob) {
+        // EDIT MODE: let parent handle update (PATCH/PUT)
+        onSubmit && onSubmit(jobData);
+      } else {
+        // CREATE MODE: call backend
+        if (!organizationId) {
+          alert("organizationId is required to create a job.");
+          return;
+        }
+
+        const createdJob = await createJob({
+          title: jobData.title,
+          description: jobData.description,
+          organizationId,
+        });
+
+        // optionally merge frontend-only fields into created job
+        const fullJob = {
+          ...createdJob,
+          company: jobData.company,
+          location: jobData.location,
+        };
+
+        // Inform parent that a new job was created
+        onSubmit && onSubmit(fullJob);
+
+        // Reset form after successful create
+        setTitle("");
+        setCompany("");
+        setLocation("");
+        setDescription("");
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Failed to save job");
+    } finally {
+      setLoading(false);
     }
   };
+
+
 
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
