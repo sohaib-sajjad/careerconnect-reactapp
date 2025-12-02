@@ -1,43 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { fetchJobs } from "../pages/orgPage/NetworkServices/jobListService";
+import React from "react";
 
-export default function OrgJobList({ orgId, onEdit, onDelete, onView }) {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      try {
-        setLoading(true);
-        const data = await fetchJobs(orgId);
-
-        if (!cancelled) {
-          setJobs(data);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(err.message || "Something went wrong");
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    }
-
-    load();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [orgId]);
-
+export default function OrgJobList({
+  jobs = [],
+  onEdit,
+  onDelete,
+  onView,
+  loading,
+  error,
+}) {
   if (loading) return <p>Loading jobs...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (jobs.length === 0) return <p>No jobs created yet.</p>;
+  if (!jobs.length) return <p>No jobs created yet.</p>;
 
   return (
     <div>
