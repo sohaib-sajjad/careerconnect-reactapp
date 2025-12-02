@@ -32,12 +32,49 @@ const handleFetchJobs = async ({ setJobs, organizationId }) => {
 };
 
 
+// POST /api/jobs
+const handleCreateJob = async (jobData, { setJobs, organizationId }) => {
+  try {
+    if (!organizationId) {
+      alert("Missing organizationId");
+      return;
+    }
 
+    const res = await fetch(`${API_BASE}/api/jobs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: jobData.title,
+        description: jobData.description,
+        organizationId,
+      }),
+    });
 
-// ---- ORG HANDLERS ----
-const handleCreateJob = (jobData) => {
-  // setJobs((prev) => [...prev, newJob]);
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to create job (${res.status}): ${text || res.statusText}`
+      );
+    }
+
+    const created = await res.json();
+
+    const newJob = {
+      ...created,
+      id: created._id,
+      company: jobData.company || "",
+      location: jobData.location || "",
+    };
+
+    setJobs((prev) => [...prev, newJob]);
+  } catch (err) {
+    console.error("handleCreateJob error:", err);
+    alert(err.message || "Failed to create job");
+  }
 };
+
 
 const handleUpdateJob = (jobData) => {
 
