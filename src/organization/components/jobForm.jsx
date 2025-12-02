@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styles } from "../../styles";
 import { createJob } from "../../services/jobService";
 
-function JobForm({ initialJob, onSubmit, onCancel }) {
+function JobForm({ initialJob, organizationId, onSubmit, onCancel }) {
   const [title, setTitle] = useState(initialJob?.title || "");
   const [company, setCompany] = useState(initialJob?.company || "");
   const [location, setLocation] = useState(initialJob?.location || "");
@@ -71,8 +71,6 @@ function JobForm({ initialJob, onSubmit, onCancel }) {
     }
   };
 
-
-
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
       <label style={styles.label}>
@@ -116,8 +114,12 @@ function JobForm({ initialJob, onSubmit, onCancel }) {
       </label>
 
       <div style={styles.buttonRow}>
-        <button type="submit" style={styles.primaryButton}>
-          {initialJob ? "Save Changes" : "Create Job"}
+        <button type="submit" style={styles.primaryButton} disabled={loading}>
+          {loading
+            ? "Saving..."
+            : initialJob
+            ? "Save Changes"
+            : "Create Job"}
         </button>
         {initialJob && (
           <button
