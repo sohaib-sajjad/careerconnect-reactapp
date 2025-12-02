@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchJobs } from "../services/jobService";
+import { fetchJobs } from "../../pages/orgPage/NetworkServices/jobListService";
 
 export default function OrgJobList({ orgId, onEdit, onDelete, onView }) {
   const [jobs, setJobs] = useState([]);

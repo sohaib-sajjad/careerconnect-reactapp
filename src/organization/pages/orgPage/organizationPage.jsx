@@ -1,7 +1,7 @@
 import React from "react";
-import { styles } from "../../styles";
-import JobForm from "../components/jobForm";
-import OrgJobList from "../components/orgJobList/orgJobList";
+import { styles } from "../../../styles";
+import JobForm from "../../components/jobForm";
+import OrgJobList from "../../components/orgJobList/orgJobList";
 import orgPageControllers from "./OrganizationPageController";
 import { useNavigate } from "react-router-dom";
 

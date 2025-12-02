@@ -1,7 +1,7 @@
 import './App.css';
 import { styles } from './styles';
 import { useState } from 'react';
-import OrganizationPage from './organization/pages/organizationPage.jsx';
+import OrganizationPage from './organization/pages/orgPage/organizationPage.jsx';
 import UserPage from './user/pages/userPage.jsx';
 import JobDetailPage from './organization/pages/Job Detail Page/jobDetailPage.jsx';
 import { Routes, Route } from "react-router-dom";

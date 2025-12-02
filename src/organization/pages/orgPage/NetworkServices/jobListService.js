@@ -1,6 +1,6 @@
-export async function fetchJobs(orgId = null) {
+export async function fetchJobs(orgId = "6739bbf16e41de7cf2c99801") {
   try {
-    const url = orgId ? `/api/org/${orgId}/jobs` : `/api/jobs`;
+    const url = orgId ? `http://localhost:5000/jobs/getJobsByOrg/${orgId}` : `/api/jobs`;
 
     const res = await fetch(url);
 
