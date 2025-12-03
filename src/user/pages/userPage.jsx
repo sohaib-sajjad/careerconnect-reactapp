@@ -1,38 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styles } from "../../styles";
 import UserJobList from "../components/userJobsList";
 import userPageControllers from "./userPageController";
-import { useState} from 'react';
+import { useState } from 'react';
 
 function UserPage() {
-
     // ---- STATE ----
-    const [jobs, setJobs] = React.useState([
-    {
-      id: 1,
-      title: "Frontend Developer",
-      company: "Acme Inc.",
-      location: "Remote",
-      description: "Build UI components with React and modern JS.",
-    },
-    {
-      id: 2,
-      title: "Backend Engineer",
-      company: "Tech Corp",
-      location: "New York",
-      description: "Work with Node.js, APIs, and databases.",
-    },
-  ]);
-    const [editingJob, setEditingJob] = React.useState(null);
+    const [jobs, setJobs] = useState([]);
+    const [editingJob, setEditingJob] = useState(null);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
 
+    // ---- API INTEGRATION ----
+    useEffect(() => {
+        // Fetch jobs from the server when the component is mounted
+        userPageControllers.handleFetchJobs({ setJobs });
+    }, []);
 
     // ---- CONTROLLERS ----
     const onApply = (jobId) => {
+        // Handle apply action
+        setAppliedJobIds((prev) => [...prev, jobId]);
         userPageControllers.handleApply(jobId);
     };
-
-
 
     return (
         <div style={styles.userLayout}>
