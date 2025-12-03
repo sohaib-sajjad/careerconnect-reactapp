@@ -131,7 +131,7 @@ const handleFetchJobDetails = async (id) => {
       return null;
     }
 
-    const res = await fetch(`${API_BASE}/getJob/${id}`);
+    const res = await fetch(`${API_BASE}/jobs/getJob/${id}`);
 
     if (!res.ok) {
       const text = await res.text();
