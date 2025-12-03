@@ -26,7 +26,7 @@ function OrganizationPage() {
   };
 
   const onUpdateJob = (jobData) => {
-    orgPageControllers.handleUpdateJob(jobData, { setJobs, setEditingJob });
+    orgPageControllers.handleUpdateJob(jobData, { setJobs });
   };
 
   const onDeleteJob = (id) => {

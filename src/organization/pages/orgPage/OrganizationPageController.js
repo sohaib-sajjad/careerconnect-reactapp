@@ -76,9 +76,53 @@ const handleCreateJob = async (jobData, { setJobs, organizationId }) => {
 };
 
 
-const handleUpdateJob = (jobData) => {
+// PATCH /api/jobs/:id
+const handleUpdateJob = async (jobData, { setJobs }) => {
+  try {
+    if (!jobData?.id) {
+      alert("Missing job ID");
+      return;
+    }
 
+    const res = await fetch(`${API_BASE}/jobs/updateJob/${jobData.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: jobData.title,
+        description: jobData.description,
+        company: jobData.company || "",
+        location: jobData.location || "",
+      }),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to update job (${res.status}): ${text || res.statusText}`
+      );
+    }
+
+    const updated = await res.json();
+
+    const normalized = {
+      ...updated,
+      id: updated._id,
+      company: updated.company || "",
+      location: updated.location || "",
+    };
+
+    // update job in state
+    setJobs((prev) =>
+      prev.map((job) => (job.id === normalized.id ? normalized : job))
+    );
+  } catch (err) {
+    console.error("handleUpdateJob error:", err);
+    alert(err.message || "Failed to update job");
+  }
 };
+
 
 const handleDeleteJob = (id) => {
 
