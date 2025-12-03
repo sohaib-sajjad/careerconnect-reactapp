@@ -124,6 +124,40 @@ const handleUpdateJob = async (jobData, { setJobs }) => {
 };
 
 
+const handleFetchJobDetails = async (id) => {
+  try {
+    if (!id) {
+      alert("Missing job ID");
+      return null;
+    }
+
+    const res = await fetch(`${API_BASE}/getJob/${id}`);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to fetch job details (${res.status}): ${text || res.statusText}`
+      );
+    }
+
+    const job = await res.json();
+
+    const normalized = {
+      ...job,
+      id: job._id,
+      company: job.company || "",
+      location: job.location || "",
+    };
+
+    return normalized;
+  } catch (err) {
+    console.error("handleFetchJobDetails error:", err);
+    alert(err.message || "Failed to fetch job details");
+    return null;
+  }
+
+};
+
 const handleDeleteJob = (id) => {
 
 };
@@ -135,6 +169,7 @@ const handleApply = (jobId) => {
 
 const orgPageControllers = {
   handleFetchJobs,
+  handleFetchJobDetails,
   handleCreateJob,
   handleUpdateJob,
   handleDeleteJob,

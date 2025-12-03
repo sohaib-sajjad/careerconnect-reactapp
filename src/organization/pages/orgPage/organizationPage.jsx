@@ -38,9 +38,11 @@ function OrganizationPage() {
   };
 
   // navigate to detail page
-  const onViewJob = (id) => {
-    navigate(`/job/${id}`);
+  const onViewJob = async (id) => {
+    const details = await orgPageControllers.handleFetchJobDetails(id);
+    navigate(`/job/${id}`, { state: { jobDetails: details } });
   };
+
 
   return (
     <div style={styles.orgLayout}>
