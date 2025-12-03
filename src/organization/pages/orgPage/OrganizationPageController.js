@@ -19,7 +19,7 @@ const handleFetchJobs = async ({ setJobs, organizationId }) => {
 
     const normalized = data.map((job) => ({
       ...job,
-      id: job._id,
+      id: job.id,
       company: job.company || "",
       location: job.location || "",
     }));
@@ -63,7 +63,7 @@ const handleCreateJob = async (jobData, { setJobs, organizationId }) => {
 
     const newJob = {
       ...created,
-      id: created._id,
+      id: created.id,
       company: jobData.company || "",
       location: jobData.location || "",
     };
@@ -108,7 +108,7 @@ const handleUpdateJob = async (jobData, { setJobs }) => {
 
     const normalized = {
       ...updated,
-      id: updated._id,
+      id: updated.id,
       company: updated.company || "",
       location: updated.location || "",
     };
@@ -144,7 +144,7 @@ const handleFetchJobDetails = async (id) => {
 
     const normalized = {
       ...job,
-      id: job._id,
+      id: job.id,
       company: job.company || "",
       location: job.location || "",
     };
