@@ -35,9 +35,27 @@ const handleApply = async (jobId, applicantId, { setJobs }) => {
       }),
     });
 
-   
-  } catch (err) {
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to apply for job (${res.status}): ${text || res.statusText}`
+      );
+    }
 
+    const updatedJob = await res.json();
+
+    // Update the job list in state after applying
+    setJobs((prev) =>
+      prev.map((job) =>
+        job.id === updatedJob.id ? { ...job, applicants: updatedJob.applicants } : job
+      )
+    );
+
+    alert("Successfully applied for the job!");
+
+  } catch (err) {
+    console.error("handleApply error:", err);
+    alert(err.message || "Failed to apply for the job");
   }
 };
 
