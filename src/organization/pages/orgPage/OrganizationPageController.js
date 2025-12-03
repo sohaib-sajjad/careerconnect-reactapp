@@ -6,7 +6,7 @@ const API_BASE =
 // GET /api/org/:orgId/jobs
 const handleFetchJobs = async ({ setJobs, organizationId }) => {
   try {
-    const res = await fetch(`${API_BASE}/api/org/${organizationId}/jobs`);
+    const res = await fetch(`${API_BASE}/jobs/getJobsByOrg/${organizationId}`);
 
     if (!res.ok) {
       const text = await res.text();
@@ -40,7 +40,7 @@ const handleCreateJob = async (jobData, { setJobs, organizationId }) => {
       return;
     }
 
-    const res = await fetch(`${API_BASE}/api/jobs`, {
+    const res = await fetch(`${API_BASE}/jobs/createJob`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,6 +90,7 @@ const handleApply = (jobId) => {
 };
 
 const orgPageControllers = {
+  handleFetchJobs,
   handleCreateJob,
   handleUpdateJob,
   handleDeleteJob,
