@@ -11,12 +11,11 @@ function UserPage() {
     const [appliedJobIds, setAppliedJobIds] = useState([]);
 
     useEffect(() => {
-        // Fetch jobs from the server when the component is mounted
-        userPageControllers.handleFetchAllJobs({ setJobs });
+        userPageControllers.handleFetchAllJobs(userId, { setJobs }, {setAppliedJobIds});
     }, []);
 
     const onApply = (jobId) => {
-        userPageControllers.handleApply(jobId, userId, setJobs, setAppliedJobIds);
+        userPageControllers.handleApply(jobId, userId, {setJobs}, {setAppliedJobIds});
     };
 
     return (

@@ -162,10 +162,6 @@ const handleDeleteJob = (id) => {
 
 };
 
-// ---- USER HANDLERS ----
-const handleApply = (jobId) => {
-
-};
 
 const orgPageControllers = {
   handleFetchJobs,
@@ -173,7 +169,6 @@ const orgPageControllers = {
   handleCreateJob,
   handleUpdateJob,
   handleDeleteJob,
-  handleApply,
 };
 
 export default orgPageControllers;

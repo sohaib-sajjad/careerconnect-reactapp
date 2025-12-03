@@ -1,7 +1,7 @@
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-const handleFetchAllJobs = async ({ setJobs }) => {
+const handleFetchAllJobs = async (userId, { setJobs }, { setAppliedJobIds }) => {
   try {
     const res = await fetch(`${API_BASE}/jobs/getAllJobs`);
     if (!res.ok) {
@@ -9,6 +9,16 @@ const handleFetchAllJobs = async ({ setJobs }) => {
     }
     const data = await res.json();
     setJobs(data); // Update the state with the fetched jobs
+
+     setAppliedJobIds((prev) => {
+      const appliedJobIds = data
+        .filter(job => job.applicants && job.applicants.includes(userId)) 
+        .map(job => job.id); 
+
+      return [...new Set([...prev, ...appliedJobIds])];
+    });
+
+
   } catch (error) {
     console.error("handleFetchJobs error:", error);
     alert(error.message || "Failed to fetch jobs");
@@ -16,22 +26,22 @@ const handleFetchAllJobs = async ({ setJobs }) => {
 };
 
 
-// POST /api/jobs/applyJob/:jobId
 const handleApply = async (jobId, applicantId, { setJobs }, { setAppliedJobIds }) => {
   try {
-    // Check if applicantId is provided
+
     if (!applicantId) {
       alert("Missing applicant ID");
       return;
     }
 
-    const res = await fetch(`${API_BASE}/jobs/applyJob/${jobId}`, {
-      method: "PATCH", // Using PATCH to update the job
+    const res = await fetch(`${API_BASE}/jobs/applyJob`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         applicantId,
+        jobId,
       }),
     });
 
