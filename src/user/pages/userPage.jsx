@@ -5,19 +5,18 @@ import userPageControllers from "./userPageController";
 import { useState } from 'react';
 
 function UserPage() {
-    // ---- STATE ----
+
+    const userId = "65a44dd2f48a4c89c0a94567"
     const [jobs, setJobs] = useState([]);
-    const [editingJob, setEditingJob] = useState(null);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
 
     useEffect(() => {
         // Fetch jobs from the server when the component is mounted
-        userPageControllers.handleFetchJobs({ setJobs });
+        userPageControllers.handleFetchAllJobs({ setJobs });
     }, []);
 
     const onApply = (jobId) => {
-        setAppliedJobIds((prev) => [...prev, jobId]);
-        userPageControllers.handleApply(jobId);
+        userPageControllers.handleApply(jobId, userId, setJobs, setAppliedJobIds);
     };
 
     return (

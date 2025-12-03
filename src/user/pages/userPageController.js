@@ -17,7 +17,7 @@ const handleFetchAllJobs = async ({ setJobs }) => {
 
 
 // POST /api/jobs/applyJob/:jobId
-const handleApply = async (jobId, applicantId, { setJobs }) => {
+const handleApply = async (jobId, applicantId, { setJobs }, { setAppliedJobIds }) => {
   try {
     // Check if applicantId is provided
     if (!applicantId) {
@@ -50,6 +50,14 @@ const handleApply = async (jobId, applicantId, { setJobs }) => {
         job.id === updatedJob.id ? { ...job, applicants: updatedJob.applicants } : job
       )
     );
+
+    setAppliedJobIds((prev) => {
+      if (!prev.includes(updatedJob.id)) {
+        return [...prev, updatedJob.id];
+      }
+      return prev;
+    });
+
 
     alert("Successfully applied for the job!");
 
