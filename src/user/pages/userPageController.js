@@ -16,9 +16,31 @@ const handleFetchAllJobs = async ({ setJobs }) => {
 };
 
 
-const handleApply = (jobId) => {
-    alert("Application submitted!");
+// POST /api/jobs/applyJob/:jobId
+const handleApply = async (jobId, applicantId, { setJobs }) => {
+  try {
+    // Check if applicantId is provided
+    if (!applicantId) {
+      alert("Missing applicant ID");
+      return;
+    }
+
+    const res = await fetch(`${API_BASE}/jobs/applyJob/${jobId}`, {
+      method: "PATCH", // Using PATCH to update the job
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        applicantId,
+      }),
+    });
+
+   
+  } catch (err) {
+
+  }
 };
+
 
 const userPageController = {
   handleApply,

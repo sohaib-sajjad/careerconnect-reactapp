@@ -10,15 +10,12 @@ function UserPage() {
     const [editingJob, setEditingJob] = useState(null);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
 
-    // ---- API INTEGRATION ----
     useEffect(() => {
         // Fetch jobs from the server when the component is mounted
         userPageControllers.handleFetchJobs({ setJobs });
     }, []);
 
-    // ---- CONTROLLERS ----
     const onApply = (jobId) => {
-        // Handle apply action
         setAppliedJobIds((prev) => [...prev, jobId]);
         userPageControllers.handleApply(jobId);
     };
