@@ -1,24 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Use useNavigate for v6
-
+import { useParams, useLocation } from "react-router-dom";
 import './jobDetailPageStyles.css';
 
 const JobDetailPage = () => {
 
     const { jobId } = useParams();
-    const [jobDetails, setJobDetails] = useState(null);
-    const navigate = useNavigate(); // Initialize useNavigate
-
-    // Fetch job details using the jobId
-    const fetchJobDetails = async () => {
-        const response = await fetch(`/api/jobs/${jobId}`);
-        const data = await response.json();
-        setJobDetails(data);
-    };
-
-    useEffect(() => {
-        fetchJobDetails();
-    }, [jobId]);
+    const location = useLocation();
+    const [jobDetails, setJobDetails] = useState(location.state?.jobDetails || null);
 
 
     return (
