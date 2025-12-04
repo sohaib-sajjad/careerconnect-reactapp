@@ -13,6 +13,7 @@ function OrganizationPage() {
   // STATE
   const [jobs, setJobs] = React.useState([]);
   const [editingJob, setEditingJob] = React.useState(null);
+  const [candidates, setCandidates] = React.useState([]); // State for matching candidates
 
   //INITIAL FETCH
   React.useEffect(() => {
@@ -37,12 +38,14 @@ function OrganizationPage() {
     setEditingJob(job); // triggers edit mode
   };
 
-  // navigate to detail page
-  const onViewJob = async (id) => {
+
+  const onViewJobWithCandidates = async (id) => {
+    // Fetch job details
     const details = await orgPageControllers.handleFetchJobDetails(id);
+    // Fetch matching candidates based on jobId
+    await orgPageControllers.handleFetchMatchingCandidates(id, { setCandidates });
     navigate(`/job/${id}`, { state: { jobDetails: details } });
   };
-
 
   return (
     <div style={styles.orgLayout}>
@@ -62,7 +65,7 @@ function OrganizationPage() {
           jobs={jobs}
           onEdit={onEditJob}
           onDelete={onDeleteJob}
-          onView={onViewJob}
+          onView={onViewJobWithCandidates} 
         />
       </section>
     </div>
