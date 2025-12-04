@@ -49,6 +49,8 @@ const handleCreateJob = async (jobData, { setJobs, organizationId }) => {
         title: jobData.title,
         description: jobData.description,
         organizationId,
+        company: jobData.company,
+        location: jobData.location,
       }),
     });
 
@@ -158,9 +160,24 @@ const handleFetchJobDetails = async (id) => {
 
 };
 
-const handleDeleteJob = (id) => {
 
+const handleDeleteJob = async (id, { setJobs }) => {
+  try {
+    if (!id) {
+      alert("Missing job ID");
+      return;
+    }
+
+    const res = await fetch(`${API_BASE}/jobs/deleteJob/${id}`, {
+      method: "DELETE",
+    });
+
+   
+  } catch (err) {
+    console.error("handleDeleteJob error:", err);
+  }
 };
+
 
 const handleFetchMatchingCandidates = async (jobId) => {
   try {
@@ -175,7 +192,7 @@ const handleFetchMatchingCandidates = async (jobId) => {
 
     const data = await res.json();
     return data;
-    
+
   } catch (err) {
     console.error("handleFetchMatchingCandidatesAndReturn error:", err);
     alert(err.message || "Failed to fetch matching candidates");
