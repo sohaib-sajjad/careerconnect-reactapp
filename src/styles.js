@@ -148,7 +148,43 @@ export const styles = {
     borderLeft: "4px solid #667eea",
     alignSelf: "start",
     gridColumn: "1 / -1"
+  },
+
+  orgEditButton: {
+    padding: "6px 12px",
+    borderRadius: 6,
+    border: "none",
+    background: "#2563eb",
+    color: "#fff",
+    fontSize: 13,
+    cursor: "pointer",
+  },
+  orgDeleteButton: {
+    padding: "6px 12px",
+    borderRadius: 6,
+    border: "1px solid #f87171",
+    background: "#fff",
+    color: "#b91c1c",
+    fontSize: 13,
+    cursor: "pointer",
+  },
+
+  orgJobActions: {
+    display: "flex",
+    gap: "6px",
+    marginTop: "8px",
+  },
+
+  orgJobCard: {
+    border: "1px solid #e5e7eb",  // light border
+    borderRadius: "8px",
+    padding: "16px",
+    marginBottom: "12px",
+    background: "#fff",
+    transition: "box-shadow 0.2s ease",
+    cursor: "pointer",
   }
+
 
 };
 

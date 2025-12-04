@@ -1,4 +1,5 @@
 import React from "react";
+import { styles } from "../../styles";
 
 export default function OrgJobList({
   jobs = [],
@@ -17,20 +18,16 @@ export default function OrgJobList({
       {jobs.map((job) => (
         <div
           key={job.id}
-          style={{
-            border: "1px solid #ddd",
-            padding: 12,
-            marginBottom: 8,
-            cursor: "pointer",
-          }}
+          style={styles.orgJobCard}
           onClick={() => onView && onView(job.id)}
         >
           <h3>{job.title}</h3>
           <p>{job.description}</p>
           <p>Applicants: {job.applicants?.length || 0}</p>
 
-          <div>
+          <div style={styles.orgJobActions}>
             <button
+              style={styles.orgEditButton}
               onClick={(e) => {
                 e.stopPropagation();
                 onEdit && onEdit(job);
@@ -40,6 +37,7 @@ export default function OrgJobList({
             </button>
 
             <button
+              style={styles.orgDeleteButton}
               onClick={(e) => {
                 e.stopPropagation();
                 onDelete && onDelete(job.id);
