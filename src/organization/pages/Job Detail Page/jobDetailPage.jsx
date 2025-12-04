@@ -47,7 +47,7 @@ const JobDetailPage = () => {
                         <div key={candidate._id} className="candidate-card">
                             <h4>{candidate.name}</h4>
                             <p><strong>Title:</strong> {candidate.title}</p>
-                            <p><strong>Job Applied:</strong> {jobDetails.title}</p>
+                            <p>{candidate.bio}</p>
                         </div>
                     ))}
                 </div>

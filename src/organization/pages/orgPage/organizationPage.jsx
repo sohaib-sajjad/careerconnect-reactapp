@@ -43,10 +43,10 @@ function OrganizationPage() {
       // Fetch job details
       const details = await orgPageControllers.handleFetchJobDetails(id);
 
-      // Fetch matching candidates and get the result directly
+      // Fetch matching candidates
       const candidatesData = await orgPageControllers.handleFetchMatchingCandidates(id);
 
-      // Navigate with both details and candidates
+      // Navigate with details and candidates
       navigate(`/job/${id}`, {
         state: {
           jobDetails: details,
