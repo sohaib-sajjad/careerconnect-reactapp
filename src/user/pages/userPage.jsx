@@ -4,7 +4,7 @@ import UserJobList from "../components/userJobsList";
 import userPageControllers from "./userPageController";
 
 function UserPage() {
-    const userId = "65a44dd2f48a4c89c0a94567"; // hardcoded userId for now
+    const userId = "692789f039cb0b41c0969cb9"; // hardcoded userId for now
     const [jobs, setJobs] = useState([]);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
     const [recommendedJobs, setRecommendedJobs] = useState([]); // State for recommended jobs

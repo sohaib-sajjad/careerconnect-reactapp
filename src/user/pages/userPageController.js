@@ -79,7 +79,7 @@ const handleApply = async (jobId, applicantId, { setJobs }, { setAppliedJobIds }
 
 const handleFetchRecommendedJobs = async (userId, { setRecommendedJobs }) => {
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/users/recommendedJobs/${userId}`);
+    const res = await fetch(`${API_BASE}/users/getRecommendedJobs/${userId}`);
 
     if (!res.ok) {
       const text = await res.text();
