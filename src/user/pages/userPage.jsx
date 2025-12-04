@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../../styles";
 import UserJobList from "../components/userJobsList";
 import userPageControllers from "./userPageController";
-import { useState } from 'react';
 
 function UserPage() {
-
-    const userId = "65a44dd2f48a4c89c0a94567"
+    const userId = "65a44dd2f48a4c89c0a94567"; // hardcoded userId for now
     const [jobs, setJobs] = useState([]);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
+    const [recommendedJobs, setRecommendedJobs] = useState([]); // State for recommended jobs
 
+    // Fetch all jobs and applied job IDs
     useEffect(() => {
-        userPageControllers.handleFetchAllJobs(userId, { setJobs }, {setAppliedJobIds});
-    }, []);
+        userPageControllers.handleFetchAllJobs(userId, { setJobs }, { setAppliedJobIds });
+        userPageControllers.handleFetchRecommendedJobs(userId, { setRecommendedJobs }); // Fetch recommended jobs
+    }, [userId]);
 
     const onApply = (jobId) => {
-        userPageControllers.handleApply(jobId, userId, {setJobs}, {setAppliedJobIds});
+        userPageControllers.handleApply(jobId, userId, { setJobs }, { setAppliedJobIds });
     };
 
     return (
@@ -29,19 +30,17 @@ function UserPage() {
                 />
             </section>
 
-            <section style={styles.appliedSection}>
-                <h2>My Applications</h2>
-                {appliedJobIds.length === 0 ? (
-                    <p>You have not applied to any jobs yet.</p>
+            <section style={styles.recommendedSection}>
+                <h2>Jobs Recommended for You</h2>
+                {recommendedJobs.length === 0 ? (
+                    <p>No recommendations at the moment.</p>
                 ) : (
                     <ul>
-                        {jobs
-                            .filter((job) => appliedJobIds.includes(job.id))
-                            .map((job) => (
-                                <li key={job.id}>
-                                    {job.title} – {job.company}
-                                </li>
-                            ))}
+                        {recommendedJobs.map((job) => (
+                            <li key={job.id}>
+                                {job.title} – {job.company}
+                            </li>
+                        ))}
                     </ul>
                 )}
             </section>
