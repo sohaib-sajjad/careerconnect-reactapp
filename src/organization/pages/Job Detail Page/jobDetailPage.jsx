@@ -1,36 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import './jobDetailPageStyles.css';
 
 const JobDetailPage = () => {
-    const { jobId } = useParams();
     const location = useLocation();
     const [jobDetails, setJobDetails] = useState(location.state?.jobDetails || null);
-    const [candidates, setCandidates] = useState([]);
+    const [candidates, setCandidates] = useState(location.state?.candidates || []);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Hardcoded job details if not passed in location.state
-        if (!jobDetails) {
-            setJobDetails({
-                title: "Software Engineer",
-                company: "Tech Corp",
-                location: "San Francisco, CA",
-                description: "Join our dynamic team of engineers at Tech Corp to build cutting-edge software."
-            });
+        if (!jobDetails || !candidates) {
+            setError("Missing job details or candidates.");
+        } else {
+            setLoading(false);
         }
-
-        // Hardcoded candidates list for matching candidates
-        const hardcodedCandidates = [
-            { _id: "1", name: "Alice Johnson", title: "Software Engineer" },
-            { _id: "2", name: "Bob Smith", title: "Senior Software Engineer" },
-            { _id: "3", name: "Charlie Brown", title: "Software Engineer" }
-        ];
-
-        setCandidates(hardcodedCandidates);
-        setLoading(false);
-    }, [jobDetails]);
+    }, [jobDetails, candidates]);
 
     return (
         <div className="job-detail-container">
@@ -62,7 +47,7 @@ const JobDetailPage = () => {
                         <div key={candidate._id} className="candidate-card">
                             <h4>{candidate.name}</h4>
                             <p><strong>Title:</strong> {candidate.title}</p>
-                            <p>{jobDetails.bio}</p>
+                            <p><strong>Job Applied:</strong> {jobDetails.title}</p>
                         </div>
                     ))}
                 </div>
