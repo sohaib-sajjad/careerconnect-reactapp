@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styles } from "../../styles";
 import UserJobList from "../components/userJobsList";
 import userPageControllers from "./userPageController";
+import './userPageStyles.css';
 
 function UserPage() {
     const userId = "692789f039cb0b41c0969cb9"; // hardcoded userId for now
@@ -35,13 +36,21 @@ function UserPage() {
                 {recommendedJobs.length === 0 ? (
                     <p>No recommendations at the moment.</p>
                 ) : (
-                    <ul>
+                    <div className="job-cards-container">
                         {recommendedJobs.map((job) => (
-                            <li key={job.id}>
-                                {job.title} – {job.company}
-                            </li>
+                            <div key={job.id} className="job-card">
+                                <h3>{job.title}</h3>
+                                <p>{job.location ? `Location: ${job.location}` : "Location: N/A"}</p>
+                                <p>{job.description}</p>
+                                <button
+                                    onClick={() => onApply(job.id)}
+                                    disabled={appliedJobIds.includes(job.id)}
+                                >
+                                    {appliedJobIds.includes(job.id) ? "Already Applied" : "Apply"}
+                                </button>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 )}
             </section>
         </div>

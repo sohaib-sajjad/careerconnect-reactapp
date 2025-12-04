@@ -3,6 +3,7 @@
     padding: 20px;
     background: #f7f7f7;
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .recommendedSection h2 {
@@ -11,12 +12,54 @@
     margin-bottom: 15px;
 }
 
-.recommendedSection ul {
-    list-style-type: none;
-    padding: 0;
+.job-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
 
-.recommendedSection li {
-    font-size: 18px;
-    margin-bottom: 10px;
+.job-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* Border for job cards */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.job-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.job-card p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.job-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Added padding for better button size */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.job-card button:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+}
+
+.job-card button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
