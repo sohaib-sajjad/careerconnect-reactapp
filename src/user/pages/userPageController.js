@@ -96,10 +96,15 @@ const handleFetchRecommendedJobs = async (userId, { setRecommendedJobs }) => {
   }
 };
 
-const userPageController = {
-  handleApply,
-  handleFetchAllJobs,
-  handleFetchRecommendedJobs
-}
+const handleFetchUserProfile = async (userId, { setUserProfile }) => {
+  
+};
 
-export default userPageController
+const userPageControllers = {
+  handleFetchAllJobs,
+  handleFetchRecommendedJobs,
+  handleApply,
+  handleFetchUserProfile
+};
+
+export default userPageControllers;

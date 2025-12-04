@@ -139,4 +139,16 @@ export const styles = {
     borderColor: "#f87171",
     color: "#b91c1c",
   },
- };
+
+  userProfileSection: {
+    backgroundColor: "#f8f9fa",
+    padding: "12px 20px",
+    borderRadius: "8px",
+    marginBottom: "12px",
+    borderLeft: "4px solid #667eea",
+    alignSelf: "start",
+    gridColumn: "1 / -1"
+  }
+
+};
+
