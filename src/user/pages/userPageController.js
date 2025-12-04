@@ -77,10 +77,24 @@ const handleApply = async (jobId, applicantId, { setJobs }, { setAppliedJobIds }
   }
 };
 
+const handleFetchRecommendedJobs = async (userId, { setRecommendedJobs }) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/users/recommendedJobs/${userId}`);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Failed to fetch recommended jobs (${res.status}): ${text || res.statusText}`);
+    }
+
+  } catch (err) {
+    console.error("handleFetchRecommendedJobs error:", err);
+  }
+};
 
 const userPageController = {
   handleApply,
-  handleFetchAllJobs
+  handleFetchAllJobs,
+  handleFetchRecommendedJobs
 }
 
 export default userPageController
