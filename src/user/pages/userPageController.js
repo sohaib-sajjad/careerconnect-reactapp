@@ -103,8 +103,13 @@ const handleFetchUserProfile = async (userId, { setUserProfile }) => {
 
     if (!res.ok) {
       const text = await res.text();
+      throw new Error(
+        `Failed to fetch user profile (${res.status}): ${text || res.statusText}`
+      );
     }
 
+    const data = await res.json();
+    setUserProfile(data);
   } catch (err) {
     console.error("handleFetchUserProfile error:", err);
   }
