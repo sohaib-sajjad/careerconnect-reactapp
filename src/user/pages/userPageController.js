@@ -97,7 +97,18 @@ const handleFetchRecommendedJobs = async (userId, { setRecommendedJobs }) => {
 };
 
 const handleFetchUserProfile = async (userId, { setUserProfile }) => {
-  
+
+  try {
+    const res = await fetch(`${API_BASE}/users/getUser/${userId}`);
+
+    if (!res.ok) {
+      const text = await res.text();
+    }
+
+  } catch (err) {
+    console.error("handleFetchUserProfile error:", err);
+  }
+
 };
 
 const userPageControllers = {
