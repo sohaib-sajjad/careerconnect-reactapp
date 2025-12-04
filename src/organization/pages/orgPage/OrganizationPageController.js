@@ -162,6 +162,27 @@ const handleDeleteJob = (id) => {
 
 };
 
+const handleFetchMatchingCandidates = async (jobId, { setCandidates }) => {
+  try {
+    const res = await fetch(`${API_BASE}/jobs/getMatchingCandidates/${jobId}`);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to fetch matching candidates (${res.status}): ${text || res.statusText}`
+      );
+    }
+
+    const data = await res.json();
+
+    setCandidates(data);
+  } catch (err) {
+    console.error("handleFetchMatchingCandidates error:", err);
+    alert(err.message || "Failed to fetch matching candidates");
+  }
+};
+
+
 
 const orgPageControllers = {
   handleFetchJobs,
@@ -169,6 +190,7 @@ const orgPageControllers = {
   handleCreateJob,
   handleUpdateJob,
   handleDeleteJob,
+  handleFetchMatchingCandidates
 };
 
 export default orgPageControllers;
