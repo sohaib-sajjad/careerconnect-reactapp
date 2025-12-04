@@ -162,7 +162,7 @@ const handleDeleteJob = (id) => {
 
 };
 
-const handleFetchMatchingCandidates = async (jobId, { setCandidates }) => {
+const handleFetchMatchingCandidates = async (jobId) => {
   try {
     const res = await fetch(`${API_BASE}/jobs/getMatchingCandidates/${jobId}`);
 
@@ -174,11 +174,12 @@ const handleFetchMatchingCandidates = async (jobId, { setCandidates }) => {
     }
 
     const data = await res.json();
-
-    setCandidates(data);
+    return data;
+    
   } catch (err) {
-    console.error("handleFetchMatchingCandidates error:", err);
+    console.error("handleFetchMatchingCandidatesAndReturn error:", err);
     alert(err.message || "Failed to fetch matching candidates");
+    return [];
   }
 };
 
