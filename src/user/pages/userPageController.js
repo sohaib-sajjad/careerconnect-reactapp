@@ -10,10 +10,10 @@ const handleFetchAllJobs = async (userId, { setJobs }, { setAppliedJobIds }) => 
     const data = await res.json();
     setJobs(data); // Update the state with the fetched jobs
 
-     setAppliedJobIds((prev) => {
+    setAppliedJobIds((prev) => {
       const appliedJobIds = data
-        .filter(job => job.applicants && job.applicants.includes(userId)) 
-        .map(job => job.id); 
+        .filter(job => job.applicants && job.applicants.includes(userId))
+        .map(job => job.id);
 
       return [...new Set([...prev, ...appliedJobIds])];
     });
@@ -86,8 +86,13 @@ const handleFetchRecommendedJobs = async (userId, { setRecommendedJobs }) => {
       throw new Error(`Failed to fetch recommended jobs (${res.status}): ${text || res.statusText}`);
     }
 
+    const data = await res.json();
+
+    setRecommendedJobs(data);
+
   } catch (err) {
     console.error("handleFetchRecommendedJobs error:", err);
+    alert(err.message || "Failed to fetch recommended jobs");
   }
 };
 
