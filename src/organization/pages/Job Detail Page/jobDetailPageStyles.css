@@ -1,0 +1,38 @@
+.job-detail-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.job-detail-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.job-detail-card h3 {
+    margin-top: 0;
+}
+
+.candidate-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.candidate-card {
+    background: #eef2f7;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-card h4 {
+    margin-top: 0;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
