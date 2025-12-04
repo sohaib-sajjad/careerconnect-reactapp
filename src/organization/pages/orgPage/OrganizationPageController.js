@@ -172,9 +172,21 @@ const handleDeleteJob = async (id, { setJobs }) => {
       method: "DELETE",
     });
 
-   
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Failed to delete job (${res.status}): ${text || res.statusText}`
+      );
+    }
+
+    // Remove job from frontend state
+    setJobs((prev) => prev.filter((job) => job.id !== id));
+
+    alert("Job deleted successfully!");
+
   } catch (err) {
     console.error("handleDeleteJob error:", err);
+    alert(err.message || "Failed to delete job");
   }
 };
 
