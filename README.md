@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Career Connect – Job Board Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Module Information
+**Module Code:** B9IS123  
+**Module Name:** Programming for Information Systems  
+**Assessment:** Continuous Assessment Two (CA2 – 70%)  
+**Academic Year:** 2025–2026  
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Project Overview
+**Career Connect** is a full-stack job board web application developed as part of CA2 for the B9IS123 module.  
+The application connects **organizations** and **job seekers**, allowing organizations to post jobs and users to discover and apply for suitable opportunities.
 
-### `npm start`
+The project demonstrates practical skills in **web application development**, **client–server architecture**, **database integration**, and **deployment**, while maintaining individuality beyond generic systems such as student or employee management systems.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Live Deployment Links
 
-### `npm test`
+- **Frontend (React App – Netlify):**  
+   https://careerconnectca2.netlify.app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Backend (Node.js / TypeScript API – Render):**  
+   https://careerconnect-serverapp.onrender.com/
 
-### `npm run build`
+> The frontend communicates with the backend using RESTful APIs hosted on Render.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Organization Side
+- Register and manage organization profile
+- Create, edit, delete, and view job postings
+- View all jobs posted by the organization
+- View suitable candidates who applied for a specific job
 
-### `npm run eject`
+### User Side
+- View all available job listings
+- Apply for jobs
+- Receive **recommended jobs** based on user profile information
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technology Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
+- React.js
+- HTML & CSS
+- JavaScript
+- Deployed on **Netlify**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Backend
+- Node.js
+- TypeScript
+- Express.js
+- Deployed on **Render**
 
-## Learn More
+### Database
+- MongoDB (NoSQL)
+- Mongoose ODM
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Architecture
+The application follows a **client–server architecture**:
+- The React frontend communicates with the backend using RESTful APIs
+- The backend handles business logic, authentication, and database operations
+- MongoDB is used to store users, organizations, jobs, and applications
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Deployment
+- **Frontend:** Netlify  
+- **Backend:** Render  
+- **Database:** MongoDB Atlas  
 
-### Analyzing the Bundle Size
+The deployed system provides a fully working version of the application, satisfying the requirement to deliver a functional project with a database collection before adding additional features.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Development Process
+- All development was tracked using **Git**
+- Features were implemented incrementally
+- Version control was consistently used to manage changes and improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Use of AI Tools
+AI tools such as **ChatGPT** were used responsibly for:
+- Assistance with HTML/CSS styling
+- Debugging and fixing code issues
+- Clarifying implementation approaches
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+All design decisions, logic implementation, and integration were performed and validated by the developer.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Learning Outcomes
+This project demonstrates:
+- Full-stack web development skills
+- Use of TypeScript in a Node.js backend
+- REST API design and consumption
+- Database design using MongoDB
+- Cloud deployment and environment configuration
+- Practical application of programming concepts taught in the module
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+**Student Name:** Sohaib Sajjad  
+**Student No.:** 20053626  
+**Project:** Career Connect  
+**Module:** B9IS123 – Programming for Information Systems
