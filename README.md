@@ -8,6 +8,12 @@
 
 ---
 
+## Student Information
+- **Student Name:** Sohaib Sajjad  
+- **Student No.:** 20053626  
+
+---
+
 ## Project Overview
 **Career Connect** is a full-stack job board web application developed as part of CA2 for the B9IS123 module.  
 The application connects **organizations** and **job seekers**, allowing organizations to post jobs and users to discover and apply for suitable opportunities.
@@ -25,6 +31,18 @@ The project demonstrates practical skills in **web application development**, **
    https://careerconnect-serverapp.onrender.com/
 
 > The frontend communicates with the backend using RESTful APIs hosted on Render.
+
+---
+
+## GitHub Repositories
+
+- **Frontend Repository (React):**  
+   https://github.com/sohaib-sajjad/careerconnect-reactapp
+
+- **Backend Repository (Node.js / TypeScript):**  
+   https://github.com/sohaib-sajjad/careerconnect-serverapp
+
+> All development progress and changes were tracked using Git, as required by the assessment.
 
 ---
 
